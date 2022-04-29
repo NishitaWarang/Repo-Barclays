@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DbConnection {
-	public static Connection connect() {  
+	public Connection connect() {  
         Connection conn = null;  
         try {  
             String url = "jdbc:sqlite:trades.db"; 

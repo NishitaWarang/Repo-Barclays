@@ -34,17 +34,5 @@ public class DbCalls {
             System.out.println("Table Created");
             return 1;
 	}
-/*	public ResultSet runQuery(String sql,Connection conn) {
-		ResultSet rs = null;
-		try {
-			if(conn!=null) {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(sql);
-			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}  
-		return rs;
-		
-	}*/
+
 }

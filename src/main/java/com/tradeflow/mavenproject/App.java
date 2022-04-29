@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Iterator;
+import java.util.Timer;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -29,11 +30,17 @@ public class App
 	public static DbCalls dbCall = new DbCalls();
 	static Statement stmt=null;
 	public static DbConnection dbConnection = new DbConnection();
-    public static void main( String[] args ) throws SQLException
+    public static void main( String[] args ) throws SQLException, InterruptedException
     {
        init();
-       scanIncomingTrades();
+       Timer time = new Timer();
+		ScheduledTask st = new ScheduledTask();
+		time.schedule(st, 0, 10000);
+       scanIncomingTrades("incomingtrades.json");
+       Thread.sleep(10000);
+       st.cancel();
        printTable();
+        
     }
 	
 	 public static void filterAndInsertTrade(Trade t) throws SQLException, java.text.ParseException { 
@@ -112,9 +119,9 @@ public class App
 				    System.out.println("Count of rows = "+k);
 	  }
 				    
-	  public static void scanIncomingTrades() {
+	  public static void scanIncomingTrades(String fileName) {
 		 JSONParser parser = new JSONParser();
-		 try (FileReader reader = new FileReader("incomingtrades.json"))
+		 try (FileReader reader = new FileReader(fileName))
 	        {
 	            //Read JSON file
 	            Object obj = parser.parse(reader);
