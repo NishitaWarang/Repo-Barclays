@@ -1,0 +1,92 @@
+[
+
+    {
+
+        "trade_id": "T1"
+
+        "version": "1"
+
+        "cpt_id": "CP-1"
+
+        "book_id": "B1"
+
+        "maturity_date": "01/05/2022"
+
+        "created_date": "30/04/2022"
+
+        "exp_flag": "N"
+
+    },
+
+    {
+
+        "trade_id": "T1"
+
+        "version": "1"
+
+        "cpt_id": "CP-1"
+
+        "book_id": "B1"
+
+        "maturity_date": "08/05/2022"
+
+        "created_date": "29/04/2022"
+
+        "exp_flag": "N"
+
+    },
+
+    {
+
+        "trade_id": "T2"
+
+        "version": "2"
+
+        "cpt_id": "CP-2"
+
+        "book_id": "B2"
+
+        "maturity_date": "25/04/2022"
+
+        "created_date": "21/04/2022"
+
+        "exp_flag": "N"
+
+    },
+
+    {
+
+        "trade_id": "T3"
+
+        "version": "3"
+
+        "cpt_id": "CP-3"
+
+        "book_id": "B3"
+
+        "maturity_date": "02/05/2022"
+
+        "created_date": "29/04/2022"
+
+        "exp_flag": "N"
+
+    },
+
+    {
+
+        "trade_id": "T3"
+
+        "version": "2"
+
+        "cpt_id": "CP-3"
+
+        "book_id": "B3"
+
+        "maturity_date": "02/05/2022"
+
+        "created_date": "29/04/2022"
+
+        "exp_flag": "N"
+
+    }
+]

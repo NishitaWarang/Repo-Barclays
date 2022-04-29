@@ -19,4 +19,13 @@ public class DbConnection {
         }   
         return conn;  
     }  
+	public void closeConnection(Connection conn) {
+		if (conn != null) {
+    	    try {
+    	      conn.close(); 
+    	    } catch (SQLException e) {
+    	      e.printStackTrace();
+    	    }
+       }
+	}
 }

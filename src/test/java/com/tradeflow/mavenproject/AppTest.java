@@ -50,7 +50,7 @@ public class AppTest {
 	@Test
 	public void scanIncomingTradesTest() {
 		//Mockito.doNothing().when(App.filterAndInsertTrade((Trade)Mockito.any()));
-		app.scanIncomingTrades("incomingtrades.json");
+	//	app.scanIncomingTrades("incomingtrades.json");
 	}
 	@Test
 	public void filterAndInsertTradeTest() {

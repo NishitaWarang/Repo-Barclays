@@ -33,19 +33,20 @@ public class App
     public static void main( String[] args ) throws SQLException, InterruptedException
     {
        init();
-       Timer time = new Timer();
+    /*   Timer time = new Timer();
 		ScheduledTask st = new ScheduledTask();
-		time.schedule(st, 0, 10000);
+		time.schedule(st, 0, 10000);*/
        scanIncomingTrades("incomingtrades.json");
-       Thread.sleep(10000);
-       st.cancel();
-       printTable();
-        
+     //  scanIncomingTrades("test.json");
+    /*   Thread.sleep(10000);
+       st.cancel();*/
+       printTable();  
+       dbConnection.closeConnection(conn);
     }
 	
 	 public static void filterAndInsertTrade(Trade t) throws SQLException, java.text.ParseException { 
 	    Date maturity_date=new SimpleDateFormat("dd/MM/yyyy").parse(t.getMaturity_date());
-        Date created_date=new SimpleDateFormat("dd/MM/yyyy").parse(t.getCreated_date());
+ //       Date created_date=new SimpleDateFormat("dd/MM/yyyy").parse(t.getCreated_date());
 		boolean valid = true;
 		boolean equalVer = false; 
 		String updateTrade,insertTrade;
@@ -59,15 +60,15 @@ public class App
 			  valid = false; 
 		  } 
 		  else {
-		  String validation2 = "select count(*) as total from store where trade_id = \""+t.getTrade_id()+
-				  				"\" and version = " + t.getVersion(); 
-		  stmt = conn.createStatement();
-		  ResultSet rs2 = stmt.executeQuery(validation2);
-		  int count2 = Integer.parseInt(rs2.getString(1));
-		  if(count2!=0) { 
-			  equalVer = true; 
+			  String validation2 = "select count(*) as total from store where trade_id = \""+t.getTrade_id()+
+					  				"\" and version = " + t.getVersion(); 
+			  stmt = conn.createStatement();
+			  ResultSet rs2 = stmt.executeQuery(validation2);
+			  int count2 = Integer.parseInt(rs2.getString(1));
+			  if(count2!=0) { 
+				  equalVer = true; 
+			  }
 		  }
-		  else {
 		  if(maturity_date.compareTo(new Date())<0) {
 			  valid = false; 
 		  }
@@ -75,10 +76,10 @@ public class App
 			  if(equalVer) { 
 			  updateTrade = "update store \n"+
 			  "set cpt_id = \""+t.getCpt_id()+"\",\n"+
-			  "set book_id = \""+t.getBook_id()+"\",\n"+
-			  "set maturity_date = \""+t.getMaturity_date()+"\",\n"+
-			  "set created_date = \""+t.getCreated_date()+"\",\n"+
-			  "set exp_flag = \""+t.getExp_flag()+"\"\n"+
+			  "book_id = \""+t.getBook_id()+"\",\n"+
+			  "maturity_date = \""+t.getMaturity_date()+"\",\n"+
+			  "created_date = \""+t.getCreated_date()+"\",\n"+
+			  "exp_flag = \""+t.getExp_flag()+"\"\n"+
 			  "where trade_id = \""+t.getTrade_id()+"\"\n"+
 			  "and version = \""+t.getVersion()+"\"";
 			  stmt = conn.createStatement();
@@ -92,9 +93,9 @@ public class App
 				  stmt.executeUpdate(insertTrade);
 			  } 
 		  }
-		  }
-		  }
-	  }
+	}
+		  
+	  
 	 
 	  public static void init() {
 		 	conn = dbConnection.connect();
@@ -104,7 +105,7 @@ public class App
 		  stmt= conn.createStatement();
 				 	ResultSet rs = stmt.executeQuery("select * from store");
 				    ResultSetMetaData rsmd = rs.getMetaData();
-				    System.out.println("querying SELECT * FROM XXX");
+				    System.out.println("SELECT * FROM store");
 				    int columnsNumber = rsmd.getColumnCount();
 				    int k=0;
 				    while (rs.next()) {
